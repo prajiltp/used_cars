@@ -1,0 +1,44 @@
+<% if @car.errors.present? %>
+  <h4>
+    There is some issue while creating. Please check the error messages.
+  </h4>
+  <ul>
+    <% @car.errors.full_messages.each do |error| %>
+      <li class="alert alert-danger">
+          <%= error %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_for @car do |f| %>
+  <div class='form-group'>
+    <%= f.label :category%>
+    <%= f.select(:category, Car.categories.keys.map {|cat| [cat.titleize, cat]}) %>
+  </div>
+  <div class='form-group'>
+    <%= f.label :model%>
+    <%= f.text_field :model %>
+  </div>
+  <div class='form-group'>
+    <%= f.label :make%>
+    <%= f.text_field :make %>
+  </div>
+  <div class='form-group'>
+    <%= f.label :year_of_manufacture %>
+    <%= f.select :year_of_manufacture, ((Time.zone.now.year - 50)..(Time.zone.now.year)) %>
+  </div>
+  <div class='form-group'>
+    <%= f.label :price %>
+    <%= f.number_field :price, step: :any%>
+  </div>
+  <div class='form-group'>
+    <%= f.label :creator_email %>
+    <%= f.email_field :creator_email %>
+  </div>
+  <div class='form-group'>
+    <%= f.label :short_description %>
+    <%= f.text_area :description, :size => "60x12" %>
+  </div>
+    <%= submit_tag "Create" %>
+<% end %>

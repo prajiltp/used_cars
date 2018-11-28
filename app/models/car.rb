@@ -8,6 +8,6 @@ class Car < ApplicationRecord
   private
   def send_notification
     subscriber_email = Subscription.send(:"#{self.category}").map(&:email).uniq
-    ApplicationMailer.subscriber_notification(self, subscriber_email).deliver_later!
+    # ApplicationMailer.subscriber_notification(self, subscriber_email).deliver_later!
   end
 end
