@@ -4,3 +4,15 @@
 <div>
   Add a Car? <%= link_to 'Add new', new_car_path%>
 </div>
+
+<div>
+Would you like to have notifcations? Please subscribe!
+</div>
+<span></span>
+<% flash.each do |key, value| %>
+  <div>
+    <%= value %>
+  </div>
+<% end %>
+
+<%= render 'subscriptions/form'%>

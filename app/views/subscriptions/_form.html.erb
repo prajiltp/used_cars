@@ -1,0 +1,24 @@
+<% if @subscription.errors.present? %>
+  <h4>
+    There is some issue while subscribing. Please check the error messages.
+  </h4>
+  <ul>
+    <% @subscription.errors.full_messages.each do |error| %>
+      <li class="alert alert-danger">
+          <%= error %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_for @subscription do |f| %>
+  <div class='form-group'>
+    <%= f.label :category%>
+    <%= f.select(:category, Subscription.categories.keys.map {|cat| [cat.titleize, cat]}) %>
+  </div>
+  <div class='form-group'>
+    <%= f.label :subscription_email %>
+    <%= f.email_field :email %>
+  </div>
+  <%= submit_tag "Subscribe" %>
+<% end %>

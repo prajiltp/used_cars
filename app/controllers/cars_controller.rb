@@ -20,7 +20,7 @@ class CarsController < ApplicationController
 
   def car_params
     params.require(:car).permit(:creator_email, :price, :category,
-                                :model, :make, :year_of_manufacture)
+                                :model, :make, :year_of_manufacture, :description)
   end
 
   def get_filtered_cars
