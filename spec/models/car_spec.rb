@@ -36,4 +36,13 @@ RSpec.describe Car, :type => :model do
                    make: 'suzki', model: 'baleno', price: '700000' )).to_not be_valid
   end
 
+  describe "send_notification function" do
+    it "should work as expected" do
+      @car = Car.new(year_of_manufacture: 2007, creator_email: 'prajil@test.com',
+                     make: 'suzki', model: 'baleno', price: '700000' )
+      expect(@car).to receive(:send_notification)
+      @car.save
+    end
+  end
+
 end

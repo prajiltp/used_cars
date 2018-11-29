@@ -17,4 +17,10 @@ RSpec.describe Subscription, :type => :model do
     expect(Subscription.new(email: "prajil@test.com", category: nil )).to_not be_valid
   end
 
+
+  it "is not valid multiple emails on same category" do
+    Subscription.create(email: "prajil@test.com", category: 'suv' )
+    expect(Subscription.new(email: "prajil@test.com", category: 'suv' )).to_not be_valid
+  end
+
 end
